@@ -23,7 +23,12 @@ public class NewClass {
         //al.eliminarAlumno(1);
         
         
-        System.out.println(al.buscarAlumnoPorDNI(1234312));
+        //System.out.println(al.buscarAlumnoPorDNI(1234312));
+        
+        for (Alumno listarAlumno : al.listarAlumnos()) {
+            System.out.println(listarAlumno);
+        }
+        
     }
     
     

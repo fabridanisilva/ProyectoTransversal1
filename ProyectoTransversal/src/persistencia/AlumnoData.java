@@ -6,7 +6,9 @@ package persistencia;
 
 import Modelo.Alumno;
 import Modelo.Conexion;
+import java.awt.List;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -144,5 +146,38 @@ public class AlumnoData {
         }
         return alumno;
     }
+    
+    public ArrayList<Alumno> listarAlumnos(){
+    
+        String sql = "SELECT  id_alumno,dni, apellido, nombre, fechaNacimiento  FROM alumno WHERE  estado=1";
+        
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        
+        
+        try {
+            PreparedStatement ps =con.prepareStatement(sql);
+           
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                
+                Alumno alumno= new Alumno();
+                alumno.setIdAlumno(rs.getInt("id_alumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setEstado(true);
+                
+                alumnos.add(alumno);
+            }
+            ps.close();
+        
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error: "+ ex.getMessage());
+        }
+        return alumnos;
+    }
+    
     
 }
