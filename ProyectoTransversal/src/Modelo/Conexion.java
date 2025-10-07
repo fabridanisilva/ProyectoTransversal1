@@ -19,7 +19,7 @@ public class Conexion {
     
     
     private static final String  url = "jdbc:mariadb://localhost:3306/";
-    private static final String DB ="universidad";
+    private static final String DB ="universidadulp";
     private static final String usuario = "root";
     private static final String password = "";
     private static Connection conexion;

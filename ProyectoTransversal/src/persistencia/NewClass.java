@@ -5,6 +5,7 @@
 package persistencia;
 
 import Modelo.Alumno;
+import Modelo.Materia;
 import java.time.LocalDate;
 
 /**
@@ -24,11 +25,22 @@ public class NewClass {
         
         
         //System.out.println(al.buscarAlumnoPorDNI(1234312));
-        
+        /*
         for (Alumno listarAlumno : al.listarAlumnos()) {
             System.out.println(listarAlumno);
         }
+        */
         
+        
+        Materia materia = new Materia("calculo",2,true);
+        MateriaData mat = new MateriaData();
+        
+        //mat.agregarMateria(materia);
+        //mat.actializarMateria(materia);
+        
+        for (Materia mostrarMateria : mat.mostrarMaterias()) {
+            System.out.println(mostrarMateria);
+        }
     }
     
     
