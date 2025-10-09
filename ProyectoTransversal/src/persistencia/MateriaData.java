@@ -96,6 +96,35 @@ public class MateriaData {
            
     }
     
+    public Materia buscarMateria(int id){
+    
+        String sql = "SELECT idMateria,nombre, año FROM materia WHERE estado=1 AND idMateria=?";
+        
+        Materia materia = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                materia = new Materia();
+                
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setActivo(true);
+            }else{
+            JOptionPane.showMessageDialog(null, "No existe el alumno");}
+            ps.close();
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error: "+ex);
+        }
+        return materia;
+    }
+    
     public ArrayList<Materia> mostrarMaterias(){
         
         String sql = "SELECT idMateria,nombre,año FROM `materia` WHERE estado=1";

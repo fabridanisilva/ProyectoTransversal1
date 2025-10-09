@@ -1,9 +1,13 @@
 
 import Modelo.Alumno;
 import Modelo.Conexion;
+import Modelo.Inscripcion;
+import Modelo.Materia;
 import java.sql.Connection;
 import java.time.LocalDate;
 import persistencia.AlumnoData;
+import persistencia.InscripcionData;
+import persistencia.MateriaData;
 
 
 
@@ -22,79 +26,89 @@ public class ProyectoTransversal {
      */
     public static void main(String[] args) {
     
-        Connection con=Conexion.getConexion();//verificacion si esta conectado a BD
-       
-       Alumno Fabricio=new Alumno(1,21908345,"Silva","fabricio daniel",LocalDate.of(2000, 3, 12), true );
-        AlumnoData alu=new AlumnoData();
-        alu.guardarAlumno(Fabricio);
-        Alumno emmanuel=new Alumno(2,21908345,"vasquez","emmanuel",LocalDate.of(2000, 3, 12), true );
-        alu.guardarAlumno(emmanuel);
-        Alumno lucas=new Alumno(3,21908345,"salcedo"," lucas ariel",LocalDate.of(2000, 3, 12), true );
-        alu.guardarAlumno(lucas);
+       //Connection con=Conexion.getConexion();//verificacion si esta conectado a BD
+       AlumnoData alu=new AlumnoData();
+       Alumno Fabricio=new Alumno(21908345,"Silva","fabricio daniel",LocalDate.of(2000, 3, 12), true );
+        
+        //alu.guardarAlumno(Fabricio);
+        Alumno emmanuel=new Alumno(21908315,"vasquez","emmanuel",LocalDate.of(2000, 3, 12), true );
+        //alu.guardarAlumno(emmanuel);
+        Alumno lucas=new Alumno(21928345,"salcedo"," lucas ariel",LocalDate.of(2000, 3, 12), true );
+        //alu.guardarAlumno(lucas);
+        
+        
        // alu.modificarAlumno(Fabricio);
-      //alu.eliminarAlumno();
+       //alu.eliminarAlumno(1);
        
       /*
-       Alumno alumnoEncontrado=alu.buscarAlumno(4);
+       Alumno alumnoEncontrado=alu.buscarAlumno(3);
        if(alumnoEncontrado!=null){
         System.out.println("dni:"+alumnoEncontrado.getDni());
         System.out.println("apellido:"+alumnoEncontrado.getApellido());
         System.out.println("nombre:"+alumnoEncontrado.getNombre());
         
        }
-      +/
+      */
+        
         /*
-        AlumnoData alu=new AlumnoData();
-        for(Alumno alumno:alu.ListarAlumnos()){
+        for(Alumno alumno:alu.listarAlumnos()){
             
             System.out.println(alumno.getDni());
             System.out.println(alumno.getApellido());
             System.out.println(alumno.getNombre());
-            System.out.println(alumno.getFechNac());
+            System.out.println(alumno.getFechaNacimiento());
         }
-        */
+        ¨*/
         
-        /*
+        
         Materia Laboratorio=new Materia("laboratorio", 2025, true );
         MateriaData mat=new MateriaData();
-        mat.guardarMateria(Laboratorio);
+        //mat.agregarMateria(Laboratorio);
         Materia BasedeDatos=new Materia("basededatos", 2025, true );
-        mat.guardarMateria(BasedeDatos);
+        //mat.agregarMateria(BasedeDatos);
         Materia Web=new Materia("web", 2025, true );
-        mat.guardarMateria(Web);
-        */
+        //mat.agregarMateria(Web);
+        
+        
         
         
         
         /*
-        MateriaData mat=new MateriaData();
-        for(Materia materia:mat.ListarMaterias()){
+        for(Materia materia:mat.mostrarMaterias()){
             System.out.println(materia.getNombre());
             System.out.println(materia.getAnioMateria());
 
             
         }
         */
-        /*
-        AlumnoData alu=new AlumnoData();
-        Alumno alumnoEncontrado=alu.buscarAlumno(3);
-        System.out.println("dni"+alumnoEncontrado.getDni());
-        System.out.println("apellido"+alumnoEncontrado.getApellido());
-        */
+        
+        
+        
+        
+        
+        
         
         /*
-       AlumnoData alu=new AlumnoData();
-       MateriaData mat=new MateriaData();
+        Alumno alumnoEncontrado=alu.buscarAlumno(3);
+        System.out.println("dni: "+alumnoEncontrado.getDni());
+        System.out.println("apellido: "+alumnoEncontrado.getApellido());
+        */
+        
+        
+      
+       
        InscripcionData id=new InscripcionData();
        
        Alumno ariel=alu.buscarAlumno(3);
-       Materia labo=mat.buscarMateria(1);
-       Inscripcion insc=new Inscripcion(ariel,labo,9);
+       Materia materia=mat.buscarMateria(1);
+       Inscripcion insc=new Inscripcion(ariel,materia,9);
+       
        
        //id.guardarInscripcion(insc);
        //id.actualizarNota(3, 1, 5);
        //id.borrarInscripcionMateriaAlumno(3, 1);
        
+       /*
        for(Inscripcion inscripcion:id.obtenerInscripciones()){
            System.out.println("id"+inscripcion.getIdInscripcion());
            System.out.println("Appelido"+inscripcion.getAlumno().getApellido());
@@ -112,13 +126,13 @@ public class ProyectoTransversal {
             System.out.println(inscripcion.getAlumno());
             System.out.println(inscripcion.getNota());
         }
-*/
+         */
         
-        /*
-        for(Materia materia: id.obtenerMateriasNOCursadas(3)){
-            System.out.println("nombre:"+materia.getNombre());
+        
+        for (Materia obtenerMateriasNoCursada : id.obtenerMateriasCursadas(3)) {
+            System.out.println(obtenerMateriasNoCursada);
         }
-        */
+        
 
    }
 }
