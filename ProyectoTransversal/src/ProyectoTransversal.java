@@ -3,7 +3,7 @@ import Modelo.Alumno;
 import Modelo.Conexion;
 import Modelo.Inscripcion;
 import Modelo.Materia;
-import java.sql.Connection;
+import java.sql.*;
 import java.time.LocalDate;
 import persistencia.AlumnoData;
 import persistencia.InscripcionData;
@@ -28,12 +28,12 @@ public class ProyectoTransversal {
     
        //Connection con=Conexion.getConexion();//verificacion si esta conectado a BD
        AlumnoData alu=new AlumnoData();
-       Alumno Fabricio=new Alumno(21908345,"Silva","fabricio daniel",LocalDate.of(2000, 3, 12), true );
+       //Alumno Fabricio=new Alumno(21908345,"Silva","fabricio daniel",LocalDate.of(2000, 3, 12), true );
         
         //alu.guardarAlumno(Fabricio);
-        Alumno emmanuel=new Alumno(21908315,"vasquez","emmanuel",LocalDate.of(2000, 3, 12), true );
+        //Alumno emmanuel=new Alumno(21908315,"vasquez","emmanuel",LocalDate.of(1993, 2, 21), true );
         //alu.guardarAlumno(emmanuel);
-        Alumno lucas=new Alumno(21928345,"salcedo"," lucas ariel",LocalDate.of(2000, 3, 12), true );
+        //Alumno lucas=new Alumno(21928345,"salcedo"," lucas ariel",LocalDate.of(2004, 3, 06), true );
         //alu.guardarAlumno(lucas);
         
         
@@ -58,15 +58,15 @@ public class ProyectoTransversal {
             System.out.println(alumno.getNombre());
             System.out.println(alumno.getFechaNacimiento());
         }
-        ¨*/
         
+        */
         
-        Materia Laboratorio=new Materia("laboratorio", 2025, true );
-        MateriaData mat=new MateriaData();
+        //Materia Laboratorio=new Materia("laboratorio", 2025, true );
+        //MateriaData mat=new MateriaData();
         //mat.agregarMateria(Laboratorio);
-        Materia BasedeDatos=new Materia("basededatos", 2025, true );
+        //Materia BasedeDatos=new Materia("basededatos", 2025, true );
         //mat.agregarMateria(BasedeDatos);
-        Materia Web=new Materia("web", 2025, true );
+        //Materia Web=new Materia("web", 2025, true );
         //mat.agregarMateria(Web);
         
         
@@ -78,7 +78,7 @@ public class ProyectoTransversal {
             System.out.println(materia.getNombre());
             System.out.println(materia.getAnioMateria());
 
-            
+           
         }
         */
         
@@ -98,16 +98,17 @@ public class ProyectoTransversal {
       
        
        InscripcionData id=new InscripcionData();
-       
+       /*
        Alumno ariel=alu.buscarAlumno(3);
        Materia materia=mat.buscarMateria(1);
        Inscripcion insc=new Inscripcion(ariel,materia,9);
+        
        
        
-       //id.guardarInscripcion(insc);
-       //id.actualizarNota(3, 1, 5);
-       //id.borrarInscripcionMateriaAlumno(3, 1);
-       
+       id.guardarInscripcion(insc);
+       id.actualizarNota(3, 1, 5);
+       id.borrarInscripcionMateriaAlumno(3, 1);
+       */
        /*
        for(Inscripcion inscripcion:id.obtenerInscripciones()){
            System.out.println("id"+inscripcion.getIdInscripcion());
@@ -121,7 +122,7 @@ public class ProyectoTransversal {
         
         /*
         InscripcionData ins=new InscripcionData();
-        for(Inscripcion inscripcion:ins.ListarInscripciones()){
+        for(Inscripcion inscripcion:ins.obtenerInscripciones()){
             System.out.println(inscripcion.getMateria());
             System.out.println(inscripcion.getAlumno());
             System.out.println(inscripcion.getNota());
@@ -131,11 +132,13 @@ public class ProyectoTransversal {
         
         for (Materia obtenerMateriasNoCursada : id.obtenerMateriasCursadas(3)) {
             System.out.println(obtenerMateriasNoCursada);
+         
         }
-        
-
-   }
 }
+
+}   
+
+
 
     
 
