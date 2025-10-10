@@ -31,9 +31,9 @@ public class ProyectoTransversal {
        //Alumno Fabricio=new Alumno(21908345,"Silva","fabricio daniel",LocalDate.of(2000, 3, 12), true );
         
         //alu.guardarAlumno(Fabricio);
-        //Alumno emmanuel=new Alumno(21908315,"vasquez","emmanuel",LocalDate.of(1993, 2, 21), true );
+        //Alumno emmanuel=new Alumno(33201445,"vasquez","emmanuel",LocalDate.of(1993, 2, 21), true );
         //alu.guardarAlumno(emmanuel);
-        //Alumno lucas=new Alumno(21928345,"salcedo"," lucas ariel",LocalDate.of(2004, 3, 06), true );
+        //Alumno lucas=new Alumno(44098723,"salcedo"," lucas ariel",LocalDate.of(2004, 3, 06), true );
         //alu.guardarAlumno(lucas);
         
         
