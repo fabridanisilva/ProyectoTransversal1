@@ -33,6 +33,7 @@ public class Pantalla extends javax.swing.JFrame {
         menuMaterias = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         menuSalir = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,7 +45,7 @@ public class Pantalla extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 770, Short.MAX_VALUE)
         );
 
         menuAlumnos.setText("Alumnos");
@@ -74,17 +75,20 @@ public class Pantalla extends javax.swing.JFrame {
         menuSalir.setText("Salir");
         jMenuBar1.add(menuSalir);
 
+        jMenu1.setText("jMenu1");
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -98,6 +102,9 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        AgregarAlumnos agregar = new AgregarAlumnos();
+        escritorio.add(agregar);
+        agregar.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void menuMateriasActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -150,6 +157,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
