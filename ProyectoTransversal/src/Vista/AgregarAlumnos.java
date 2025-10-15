@@ -313,27 +313,14 @@ public class AgregarAlumnos extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         
-        /*
-            String idBuscado = txtId.getText();
-    boolean encontrado = false;
-
-    for (int i = 0; i < modelo.getRowCount(); i++) {
-        if (modelo.getValueAt(i, 0).toString().equals(idBuscado)) {
-            tblAlumnos.setRowSelectionInterval(i, i);
-            JOptionPane.showMessageDialog(this, "Alumno encontrado.");
-            encontrado = true;
-            break;
-        }
-    }
-    if (!encontrado) {
-        JOptionPane.showMessageDialog(this, "No se encontró ningún alumno con ese ID.");
-    }
-*/
+    
         try{
         Integer dni= Integer.parseInt(txtDni.getText());
         alumno = alumnoData.buscarAlumnoPorDNI(dni);
             if (alumno!=null) {
                 cargarDatos(alumno);
+            }else{
+                JOptionPane.showMessageDialog(this, "No se encontro el alumno");
             }
         
         

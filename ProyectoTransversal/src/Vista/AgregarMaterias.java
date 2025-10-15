@@ -4,8 +4,12 @@
  */
 package Vista;
 
+import Modelo.Alumno;
+import Modelo.Materia;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import persistencia.AlumnoData;
+import persistencia.MateriaData;
 
 /**
  *
@@ -17,11 +21,26 @@ public class AgregarMaterias extends javax.swing.JInternalFrame {
     /**
      * Creates new form AgregarMaterias
      */
+     
+     Materia materia = null;
+     MateriaData materiaData = new MateriaData();
+     
+     
     public AgregarMaterias() {
+        
+        
+        
+        
         initComponents();
         String[] columnas = {"ID", "Nombre", "Año", "Activa"};
         modelo.setColumnIdentifiers(columnas);
         tblMaterias.setModel(modelo);
+        
+        
+        txtNombreMateria.setEnabled(false);
+        txtAño.setEnabled(false);
+        chkActivo.setEnabled(false);
+        btnGuardar.setEnabled(false);
     }
 
     /**
@@ -34,44 +53,38 @@ public class AgregarMaterias extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabelId = new javax.swing.JLabel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelAnio = new javax.swing.JLabel();
         jLabelEstado = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        txtIdMateria = new javax.swing.JTextField();
         txtNombreMateria = new javax.swing.JTextField();
-        txtAnio = new javax.swing.JTextField();
+        txtAño = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMaterias = new javax.swing.JTable();
         chkActivo = new javax.swing.JCheckBox();
+        txtIdMateria = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jbIngresar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Gestión de Materias");
 
-        jLabelId.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jLabelId.setText("ID");
-
         jLabelNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jLabelNombre.setText("Nombre");
+        jLabelNombre.setText("Nombre:");
 
         jLabelAnio.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jLabelAnio.setText("Año");
+        jLabelAnio.setText("Año:");
 
         jLabelEstado.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jLabelEstado.setText("Estado");
-
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
+        jLabelEstado.setText("Estado:");
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,12 +114,6 @@ public class AgregarMaterias extends javax.swing.JInternalFrame {
             }
         });
 
-        txtIdMateria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdMateriaActionPerformed(evt);
-            }
-        });
-
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,89 +138,99 @@ public class AgregarMaterias extends javax.swing.JInternalFrame {
                 "ID", "Nombre", "Año", "Estado"
             }
         ));
+        tblMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMateriasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblMaterias);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("ID:");
+
+        jbIngresar.setText("Ingresar");
+        jbIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbIngresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(229, 229, 229)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelEstado)
-                                    .addComponent(jLabelAnio)
-                                    .addComponent(jLabelNombre)
-                                    .addComponent(jLabelId))
-                                .addGap(44, 44, 44))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnAgregar)
-                                .addGap(32, 32, 32)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkActivo)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtIdMateria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                                        .addComponent(txtNombreMateria, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtAnio, javax.swing.GroupLayout.Alignment.LEADING))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnActualizar)
-                                .addGap(39, 39, 39)
-                                .addComponent(btnEliminar)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnBuscar))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbIngresar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuardar)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnActualizar)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnEliminar)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnBuscar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(133, 133, 133)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelEstado)
+                            .addComponent(jLabelAnio)
+                            .addComponent(jLabelNombre)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(chkActivo)
+                            .addComponent(txtNombreMateria, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                            .addComponent(txtAño)
+                            .addComponent(txtIdMateria))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 99, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLimpiar)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(100, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(182, 182, 182))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(61, 61, 61)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelId)
-                    .addComponent(txtIdMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtIdMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkActivo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNombre)
+                            .addComponent(txtNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelAnio)
+                            .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelEstado)))
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNombre)
-                    .addComponent(txtNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelAnio)
-                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelEstado)
-                    .addComponent(chkActivo))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
                     .addComponent(btnGuardar)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(jbIngresar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLimpiar)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,50 +238,61 @@ public class AgregarMaterias extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        
+        String nombre = txtNombreMateria.getText();
+        int año = Integer.parseInt(txtAño.getText());
+        boolean activo = chkActivo.isSelected();
+        
+        materia = new Materia(nombre,año,activo);
+        
+        materiaData.agregarMateria(materia);
+        
+        
         JOptionPane.showMessageDialog(this, "Materia guardada correctamente.");
+        
+        txtNombreMateria.setEnabled(false);
+        txtAño.setEnabled(false);
+        chkActivo.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        limpiar();
+        
+        txtIdMateria.setEnabled(true);
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnBuscar.setEnabled(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
         int fila = tblMaterias.getSelectedRow();
-    if (fila >= 0) {
-        modelo.setValueAt(txtIdMateria.getText(), fila, 0);
-        modelo.setValueAt(txtNombreMateria.getText(), fila, 1);
-        modelo.setValueAt(txtAnio.getText(), fila, 2);
-        modelo.setValueAt(chkActivo.isSelected() ? "Sí" : "No", fila, 3);
-        JOptionPane.showMessageDialog(this, "Materia actualizada.");
-    } else {
-        JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
-    }
-    }//GEN-LAST:event_btnActualizarActionPerformed
-
-    private void txtIdMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdMateriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdMateriaActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
-         try {
-        int id = Integer.parseInt(txtIdMateria.getText());
-        String nombre = txtNombreMateria.getText();
-        int anio = Integer.parseInt(txtAnio.getText());
-        boolean activo = chkActivo.isSelected();
-
-        Object[] fila = {id, nombre, anio, activo ? "Sí" : "No"};
-        modelo.addRow(fila);
-
-        JOptionPane.showMessageDialog(this, "Materia agregada correctamente.");
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Verifique los campos numéricos (ID o Año).");
-    }
         
-    }//GEN-LAST:event_btnAgregarActionPerformed
+        if (fila>=0) {
+            
+        
+        int id =  (int) tblMaterias.getValueAt(fila, 0);
+        String nombre = txtNombreMateria.getText();
+        int año = (int) Integer.parseInt(txtAño.getText());
+        boolean estado = (boolean) chkActivo.isSelected();
+        
+        materia = new Materia(id,nombre,año,estado);
+        materiaData.actializarMateria(materia);
+        
+        
+        JOptionPane.showMessageDialog(this, "Materia actualizada.");
+        }else{
+        JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
           int fila = tblMaterias.getSelectedRow();
     if (fila >= 0) {
         modelo.removeRow(fila);
+        
+        int id = (int) tblMaterias.getValueAt(fila, 0);
+        materiaData.eliminarMateria(id);
+        
         JOptionPane.showMessageDialog(this, "Materia eliminada.");
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar.");
@@ -273,48 +301,97 @@ public class AgregarMaterias extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-         String idBuscado = txtIdMateria.getText();
-    boolean encontrado = false;
-
-    for (int i = 0; i < modelo.getRowCount(); i++) {
-        if (modelo.getValueAt(i, 0).toString().equals(idBuscado)) {
-            tblMaterias.setRowSelectionInterval(i, i);
-            JOptionPane.showMessageDialog(this, "Materia encontrada.");
-            encontrado = true;
-            break;
+         int idBuscado = Integer.parseInt(txtIdMateria.getText());
+         
+         materia = materiaData.buscarMateria(idBuscado);
+        
+        
+        if (materia!=null) {
+            cargarDatos(materia);
         }
-    }
-    if (!encontrado) {
-        JOptionPane.showMessageDialog(this, "No se encontró ninguna materia con ese ID.");
-    }
+    
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
-         txtIdMateria.setText("");
-    txtNombreMateria.setText("");
-    txtAnio.setText("");
-    chkActivo.setSelected(false);
-    tblMaterias.clearSelection();
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    private void jbIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIngresarActionPerformed
+        // TODO add your handling code here:
+        habilitarAgregar();
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        
+    }//GEN-LAST:event_jbIngresarActionPerformed
+
+    private void tblMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMateriasMouseClicked
+        // TODO add your handling code here:
+         int fila = tblMaterias.getSelectedRow();
+         
+         
+         
+        if (fila>=0) {
+             txtNombreMateria.setEnabled(true);
+        txtAño.setEnabled(true);
+        chkActivo.setEnabled(true);
+        
+         int id = (int) tblMaterias.getValueAt(fila, 0);
+        String nombre = (String) tblMaterias.getValueAt(fila, 1);
+        int año = (int) tblMaterias.getValueAt(fila, 2);
+        boolean estado = (boolean) tblMaterias.getValueAt(fila, 3);
+        
+        txtIdMateria.setText(String.valueOf(id));
+        txtNombreMateria.setText(nombre);
+        txtAño.setText(String.valueOf(año));
+        chkActivo.setSelected(estado);
+        
+       
+        }
+    }//GEN-LAST:event_tblMateriasMouseClicked
+
+    
+    public void habilitarAgregar(){
+        txtIdMateria.setEnabled(false);
+        btnGuardar.setEnabled(true);
+        txtNombreMateria.setEnabled(true);
+        txtAño.setEnabled(true);
+        chkActivo.setEnabled(true);
+    
+    }
+    
+    public void cargarDatos(Materia materia){
+    
+        modelo.addRow(new Object[]{materia.getIdMateria(),materia.getNombre(),materia.getAnioMateria(),materia.isActivo()});
+    
+    }
+    
+    public void limpiar(){
+             txtIdMateria.setText("");
+    txtNombreMateria.setText("");
+    txtAño.setText("");
+    chkActivo.setSelected(false);
+    tblMaterias.clearSelection();
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox chkActivo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelAnio;
     private javax.swing.JLabel jLabelEstado;
-    private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbIngresar;
     private javax.swing.JTable tblMaterias;
-    private javax.swing.JTextField txtAnio;
+    private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtIdMateria;
     private javax.swing.JTextField txtNombreMateria;
     // End of variables declaration//GEN-END:variables
