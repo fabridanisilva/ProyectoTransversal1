@@ -32,8 +32,9 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         menuMaterias = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        menuInscripcion = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         menuSalir = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,11 +73,25 @@ public class Pantalla extends javax.swing.JFrame {
 
         jMenuBar1.add(menuMaterias);
 
+        menuInscripcion.setText("Inscripcion");
+        menuInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInscripcionActionPerformed(evt);
+            }
+        });
+
+        jMenuItem3.setText("Inscripcion");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menuInscripcion.add(jMenuItem3);
+
+        jMenuBar1.add(menuInscripcion);
+
         menuSalir.setText("Salir");
         jMenuBar1.add(menuSalir);
-
-        jMenu1.setText("jMenu1");
-        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -124,6 +139,22 @@ public class Pantalla extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void menuInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInscripcionActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+    }//GEN-LAST:event_menuInscripcionActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        VistaInscripcion vi = new VistaInscripcion();
+        
+        escritorio.add(vi);
+        vi.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -164,11 +195,12 @@ public class Pantalla extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menuAlumnos;
+    private javax.swing.JMenu menuInscripcion;
     private javax.swing.JMenu menuMaterias;
     private javax.swing.JMenu menuSalir;
     // End of variables declaration//GEN-END:variables
