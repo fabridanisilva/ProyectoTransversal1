@@ -130,7 +130,7 @@ public class ProyectoTransversal {
          */
         
         
-        for (Materia obtenerMateriasNoCursada : id.obtenerMateriasCursadas(3)) {
+        for (Inscripcion obtenerMateriasNoCursada : id.obtenerInscripcionesPorAlumno(3)) {
             System.out.println(obtenerMateriasNoCursada);
          
         }

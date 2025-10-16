@@ -15,6 +15,7 @@ public class Pantalla extends javax.swing.JFrame {
      */
     public Pantalla() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -34,6 +35,7 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         menuInscripcion = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         menuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,6 +89,14 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
         menuInscripcion.add(jMenuItem3);
+
+        jMenuItem4.setText("Por Alumno");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        menuInscripcion.add(jMenuItem4);
 
         jMenuBar1.add(menuInscripcion);
 
@@ -155,6 +165,14 @@ public class Pantalla extends javax.swing.JFrame {
         vi.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        
+        VistaMostrarInscripciones vmi = new VistaMostrarInscripciones();
+        escritorio.add(vmi);
+        vmi.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -199,6 +217,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenu menuAlumnos;
     private javax.swing.JMenu menuInscripcion;
     private javax.swing.JMenu menuMaterias;
