@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Usuario
@@ -27,7 +31,15 @@ public class Pantalla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icono= new ImageIcon(getClass().getResource("/ProyectoTransversal/Imagenes/portada_ppal.jpg"));
+        Image miImagen=icono.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent (Graphics g){
+
+                g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         menuAlumnos = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -36,6 +48,7 @@ public class Pantalla extends javax.swing.JFrame {
         menuInscripcion = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jNotas = new javax.swing.JMenuItem();
         menuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,6 +110,14 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
         menuInscripcion.add(jMenuItem4);
+
+        jNotas.setText("CargarNotas");
+        jNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNotasActionPerformed(evt);
+            }
+        });
+        menuInscripcion.add(jNotas);
 
         jMenuBar1.add(menuInscripcion);
 
@@ -173,6 +194,14 @@ public class Pantalla extends javax.swing.JFrame {
         vmi.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNotasActionPerformed
+        // TODO add your handling code here:
+        Notas No = new Notas();
+        
+        escritorio.add(No);
+        No.setVisible(true);
+    }//GEN-LAST:event_jNotasActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -218,6 +247,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jNotas;
     private javax.swing.JMenu menuAlumnos;
     private javax.swing.JMenu menuInscripcion;
     private javax.swing.JMenu menuMaterias;
